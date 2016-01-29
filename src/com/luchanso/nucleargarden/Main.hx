@@ -1,5 +1,6 @@
 package com.luchanso.nucleargarden;
 
+import com.luchanso.nucleargarden.game.Game;
 import openfl.display.Bitmap;
 import openfl.display.Sprite;
 import openfl.display.BitmapData;
@@ -12,8 +13,7 @@ import openfl.Lib;
  */
 class Main extends Sprite 
 {
-	var test : BitmapData;
-	var testDip : Bitmap;
+	var game : Game;
 
 	public function new() 
 	{
@@ -24,21 +24,9 @@ class Main extends Sprite
 	
 	private function addedToStage(e:Event):Void 
 	{
-		var winWidth = Lib.application.window.width;
-		var winHeight = Lib.application.window.height;
+		game = new Game();
 		
-		removeEventListener(Event.ADDED_TO_STAGE, addedToStage);
-		
-		graphics.beginFill(0xffffff);
-		graphics.drawRect(0, 0, winWidth, winHeight);
-		graphics.endFill();
-		
-		test = openfl.Assets.getBitmapData("img/test.jpg");
-		testDip = new Bitmap(test);
-		testDip.x = winWidth / 2 - testDip.width / 2;
-		testDip.y = winHeight / 2 - testDip.height / 2;
-		
-		addChild(testDip);
+		addChild(game);
 	}
 
 }
