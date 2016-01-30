@@ -12,26 +12,19 @@ import openfl.text.TextFieldAutoSize;
  */
 class Ball extends Sprite implements GameObj
 {	
-	public var color : Int = 0;
-	public var size : Float = 0;
+	private var color : Int = 0xFF0006;
+	private var size : Float = 30;
 	
 	/**
 	 * Verticale speed
 	 */
-	private var vSpeed : Float = 0;
 	private var debugInformation : TextField;
 	
-	static private var deltaAcceleration : Float = 0.13;
-	
-	public function new(isDebug : Bool = true)
+	public function new()
 	{
 		super();
 		
 		addEventListener(Event.ADDED_TO_STAGE, addToStage);
-		
-		if (isDebug) {
-			debug();
-		}
 	}
 	
 	private function addToStage(e:Event):Void 
@@ -48,31 +41,10 @@ class Ball extends Sprite implements GameObj
 		graphics.endFill();
 	}
 	
-	private function debug()
-	{
-		debugInformation = new TextField();		
-		debugInformation.text = "vP: " + this.y;
-		debugInformation.textColor = 0xFFFFFF;
-		debugInformation.autoSize = TextFieldAutoSize.LEFT;
-		
-		addChild(debugInformation);
-	}
-	
-	public function vSpeedUp()
-	{
-		vSpeed -= deltaAcceleration;
-	}
-	
-	public function vSpeedDown()
-	{
-		vSpeed += deltaAcceleration;
-	}
-	
 	/* FloatERFACE com.luchanso.nucleargarden.game.GameObj */
 	
 	public function update(timeDelta:Float) 
-	{
-	    y += vSpeed * timeDelta;
-		debugInformation.text = "y: " + this.y + " vA:" + this.vSpeed;
+	{	    
+		
 	}
 }
