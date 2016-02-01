@@ -1,11 +1,8 @@
 package com.luchanso.nucleargarden;
 
 import com.luchanso.nucleargarden.game.Game;
-import openfl.display.Bitmap;
 import openfl.display.Sprite;
-import openfl.display.BitmapData;
 import openfl.events.Event;
-import openfl.Lib;
 
 /**
  * ...

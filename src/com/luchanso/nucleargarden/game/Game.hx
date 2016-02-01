@@ -1,15 +1,10 @@
 package com.luchanso.nucleargarden.game;
 
 
-import openfl.display.DisplayObject;
 import openfl.display.Sprite;
 import openfl.events.Event;
-import openfl.events.KeyboardEvent;
-import openfl.events.MouseEvent;
-import openfl.events.TimerEvent;
+import openfl.display.FPS;
 import openfl.Lib;
-import openfl.ui.Keyboard;
-import openfl.utils.Timer;
 
 /**
  * ...
@@ -18,17 +13,15 @@ import openfl.utils.Timer;
 class Game extends Sprite
 {
 	var timestep : Timestep;
-	var playerBall : Ball;
-	var platforms : List<Platform> = new List<Platform>();
-	
-	var platformDistanceMin : Float = 300;
+	var fps : FPS;
+	var shapes = new List<GameShape>();
 
 	public function new()
 	{
 		super();
 		
 		timestep = new Timestep();
-		timestep.gameSpeed = 0.5;
+		timestep.gameSpeed = 1;
 		
 		addEventListener(Event.ADDED_TO_STAGE, addedToStage);
 	}
@@ -37,57 +30,36 @@ class Game extends Sprite
 	{
 		removeEventListener(Event.ADDED_TO_STAGE, addedToStage);		
 		
-		Lib.current.stage.addEventListener(MouseEvent.CLICK, tap);
+		fps = new FPS(10, 10, 0xFFFFFF);
+		addChild(fps);
 		
-		
-		playerBall = new Ball();
-		addChild(playerBall);
-		
+		for (i in 0...100)
+		{
+			var shape = new GameShape();
+			shape.color = 0xAAAAAA + Math.round(Math.random() * 0x666666);
+			shape.x = Math.random() * Lib.application.window.width;
+			shape.y = Math.random() * Lib.application.window.height;
+			
+			shape.speed = Math.random() * 3;
+			
+			shapes.push(shape);
+			addChild(shape);
+		}
+
 		addEventListener(Event.ENTER_FRAME, update);
 	}
 	
-	private function tap(e:MouseEvent):Void 
-	{
-		playerBall.x = e.stageX - this.x;
-		playerBall.y = e.stageY - this.y;
-	}
-	
-	private function update(e:Event):Void
+	private function update(e:Event):Void 
 	{
 		var timeDelta = timestep.tick();
-		
-		playerBall.update(timeDelta);
-		this.x -= 2 * timeDelta;
-	}
-	
-	private function checkDistanceForNewPlatform() {
-		var platform = platforms.first();
-		
-		if (platform == null) {
-			return true;
-		} else {
-			return getAbsolutleX(platform) < Lib.application.window.width - platformDistanceMin;
+
+		for (shape in shapes) 
+		{
+			if (Math.random() < 0.1) {
+				shape.speed = Math.random() * 3;
+			}
+			shape.rotation = GameUtils.convertPointToDeg(mouseX, mouseY, shape.centerX, shape.centerY);
+			shape.update(timeDelta);
 		}
-	}
-	
-	private function clearScreen()
-	{
-		graphics.beginFill(0xFFFFFF);
-		graphics.drawRect(0, 0, Lib.application.window.width, Lib.application.window.height);
-		graphics.endFill();
-	}
-	
-	private function generatePlatform() {
-		var platform = new Platform();
-		platform.x = -this.x + Lib.application.window.width;
-		platform.y = Math.random() * (Lib.application.window.height - platform.platformSize);
-		
-		platforms.push(platform);
-		
-		return platform; 
-	}
-	
-	private function getAbsolutleX(obj : DisplayObject) {
-		return this.x + obj.x;
 	}
 }
