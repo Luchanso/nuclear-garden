@@ -1,6 +1,6 @@
 package com.luchanso.nucleargarden;
 
-import com.luchanso.nucleargarden.game.Game;
+import com.luchanso.nucleargarden.battle.Game;
 import openfl.display.Sprite;
 import openfl.events.Event;
 
