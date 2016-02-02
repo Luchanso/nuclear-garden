@@ -1,4 +1,4 @@
-package com.luchanso.nucleargarden.game;
+package com.luchanso.nucleargarden.battle.units;
 
 /**
  * @author Loutchansky Oleg
