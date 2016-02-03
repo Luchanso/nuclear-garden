@@ -12,14 +12,12 @@ import openfl.events.MouseEvent;
 class ButtonCreate extends Sprite
 {
 	public var color : Int = 0x00D200;
-	public var hoverColor : Int = 0x00C100;
-	public var shape : GameShape;
+	public var hoverColor : Int = 0x00C100;	
+	public var shapeType : ShapeType;	
+	public var size(get, set) : Float = 30;
 	
 	private var _color : Int;
-	
-	public var shapeType : ShapeType;
-	
-	public var size : Float = 30;
+	private var shape : GameShape;
 
 	public function new(shapeType : ShapeType)
 	{
@@ -75,5 +73,17 @@ class ButtonCreate extends Sprite
 		graphics.lineTo(size, size);
 		graphics.lineTo(0, size);
 		graphics.lineTo(0, 0);
+	}
+	
+	function get_size():Float 
+	{
+		return _size;
+	}
+	
+	function set_size(value:Float):Float 
+	{
+		_size = value;
+		draw();
+		return _size;
 	}
 }
