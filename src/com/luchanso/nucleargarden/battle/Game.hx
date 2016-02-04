@@ -74,20 +74,20 @@ class Game extends Sprite
 		var shipSH = new GameShape();
 		
 		var buttonHQ = new ButtonCreate(shipHQ);
-		buttonHQ.addEventListener(MouseEvent.CLICK, createHQ);
+		/*buttonHQ.addEventListener(MouseEvent.CLICK, createHQ);
 		buttonHQ.size = Lib.application.window.height / 4;
 		buttonHQ.x = 0;
-		buttonHQ.y = 0;
+		buttonHQ.y = 0;*/
 		
 		var buttonQS = new ButtonCreate(shipQS);
-		buttonSQ.size = Lib.application.window.height / 4;
+		/*buttonSQ.size = Lib.application.window.height / 4;
 		buttonQS.x = 0;
-		buttonQS.y = 150;
+		buttonQS.y = 150;*/
 		
 		var buttonSH = new ButtonCreate(shipSH);
-		buttonSH.size = Lib.application.window.height / 4;
+		/*buttonSH.size = Lib.application.window.height / 4;
 		buttonSH.x = 50;
-		buttonSH.y = 250;
+		buttonSH.y = 250;*/
 		
 		addChild(buttonHQ);
 		addChild(buttonQS);
