@@ -3,7 +3,7 @@
 	<!-- NMML reference: https://gist.github.com/1763850 -->
 	
 	<!-- metadata, make sure 'package' is at least 3 segments (ie. com.mycompany.myproject) -->
-	<meta title="nuclear-garden" package="com.luchanso.nucleargarden.nuclear-garden" version="1.0.0" company="Loutchansky Oleg" />
+	<meta title="nuclear-garden" package="com.luchanso.nucleargarden.nuclear-garden" version="1.0.1" company="Loutchansky Oleg" />
 	
 	<!-- output -->
 	<app main="com.luchanso.nucleargarden.Main" file="nuclear-garden" path="bin" />
